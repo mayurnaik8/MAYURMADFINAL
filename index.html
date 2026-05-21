@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAYUR CHANDRASHEKAR's Recipe World</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader">
+            <i class="fas fa-utensils"></i>
+            <h2>Loading Recipes...</h2>
+        </div>
+    </div>
+
+    <!-- Notifications -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">RJC</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#recipes-section">Recipes</a></li>
+                <li><a href="#add-recipe-section">Add Recipe</a></li>
+                <li><a href="#favorites-section">Favorites</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content glass">
+            <h1>Welcome to MAYUR CHANDRASHEKAR’s Recipe World</h1>
+            <p>Discover, share, and savor the best recipes from around the globe.</p>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search for recipes...">
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters glass">
+                <select id="filter-cuisine">
+                    <option value="all">All Cuisines</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Indian">Indian</option>
+                    <option value="Mexican">Mexican</option>
+                    <option value="Asian">Asian</option>
+                    <option value="American">American</option>
+                    <option value="Other">Other</option>
+                </select>
+                <select id="filter-difficulty">
+                    <option value="all">All Difficulties</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                </select>
+                <select id="filter-time">
+                    <option value="all">Any Time</option>
+                    <option value="under30">Under 30 mins</option>
+                    <option value="under60">Under 60 mins</option>
+                    <option value="over60">Over 60 mins</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe of the Day -->
+    <section id="recipe-of-the-day" class="rotd-section container">
+        <h2 class="section-title">Recipe of the Day</h2>
+        <div class="rotd-container glass" id="rotd-container">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- Trending Recipes Carousel -->
+    <section id="trending-section" class="trending-section container">
+        <h2 class="section-title">Trending Now</h2>
+        <div class="carousel-container" id="trending-carousel">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- Featured Recipes -->
+    <section id="recipes-section" class="recipes-section container">
+        <h2 class="section-title">Explore Recipes</h2>
+        <div class="recipe-grid" id="recipe-grid">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- Favorites Section -->
+    <section id="favorites-section" class="favorites-section container" style="display: none;">
+        <h2 class="section-title">Your Favorites</h2>
+        <div class="recipe-grid" id="favorites-grid">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- Add Recipe Section -->
+    <section id="add-recipe-section" class="add-recipe-section container">
+        <h2 class="section-title">Share Your Recipe</h2>
+        <form id="add-recipe-form" class="glass form-container">
+            <div class="form-group">
+                <label for="recipe-title">Recipe Title</label>
+                <input type="text" id="recipe-title" required placeholder="E.g. Classic Margherita Pizza">
+            </div>
+            <div class="form-group">
+                <label for="recipe-image">Image URL</label>
+                <input type="url" id="recipe-image" required placeholder="https://example.com/image.jpg">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="recipe-time">Preparation Time (mins)</label>
+                    <input type="number" id="recipe-time" required min="1">
+                </div>
+                <div class="form-group">
+                    <label for="recipe-difficulty">Difficulty</label>
+                    <select id="recipe-difficulty" required>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="recipe-cuisine">Cuisine</label>
+                    <select id="recipe-cuisine" required>
+                        <option value="Italian">Italian</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Asian">Asian</option>
+                        <option value="American">American</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="recipe-desc">Short Description</label>
+                <textarea id="recipe-desc" rows="2" required placeholder="Briefly describe the recipe..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="recipe-ingredients">Ingredients (one per line)</label>
+                <textarea id="recipe-ingredients" rows="4" required placeholder="2 cups flour&#10;1 cup water..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="recipe-steps">Cooking Steps (one per line)</label>
+                <textarea id="recipe-steps" rows="4" required placeholder="Mix flour and water&#10;Knead dough..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Add Recipe</button>
+        </form>
+    </section>
+
+    <!-- Cooking Tips Slider -->
+    <section class="tips-section container">
+        <h2 class="section-title">Chef's Tips</h2>
+        <div class="tips-slider glass">
+            <div class="tip active" id="current-tip">
+                <i class="fas fa-lightbulb"></i>
+                <p>Always taste your food as you cook to ensure proper seasoning!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chef Quote Section -->
+    <section class="quote-section">
+        <div class="container glass quote-box">
+            <i class="fas fa-quote-left"></i>
+            <p>"Cooking is like love. It should be entered into with abandon or not at all."</p>
+            <h4>- MAYUR CHANDRASHEKAR</h4>
+        </div>
+    </section>
+
+    <!-- Recipe Modal/Popup -->
+    <div id="recipe-modal" class="modal">
+        <div class="modal-content glass">
+            <span class="close-btn">&times;</span>
+            <div id="modal-body">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">RJC</div>
+                <p>Created by MAYUR CHANDRASHEKAR</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
